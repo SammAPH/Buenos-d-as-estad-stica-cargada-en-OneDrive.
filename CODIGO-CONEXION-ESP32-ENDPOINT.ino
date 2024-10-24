@@ -2,14 +2,14 @@
 #include <HTTPClient.h>
 
 // Reemplaza con tu SSID y contraseña
-const char* ssid = "Samm&";
-const char* password = "DinoPulido2023";
+const char* ssid = "nombreRed";
+const char* password = "password";
 
 const int RX_PIN = 16;  // Pin RX del ESP32
 const int TX_PIN = 17;  // Pin TX del ESP32
 
 // URL del endpoint expuesto por ngrok
-const char* ngrokURL = "https://5640-181-155-230-183.ngrok-free.app/figures"; // Cambia esto por tu URL ngrok
+const char* ngrokURL = "https://8d89-191-156-182-203.ngrok-free.app/figures"; // Cambia esto por tu URL ngrok
 
 unsigned long previousMillis = 0; // Almacena el último momento en que se realizó una solicitud
 const long interval = 2000;      // Intervalo de 5 segundos
