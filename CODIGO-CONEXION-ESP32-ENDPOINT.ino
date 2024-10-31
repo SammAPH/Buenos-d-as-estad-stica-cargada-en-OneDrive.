@@ -2,14 +2,14 @@
 #include <HTTPClient.h>
 
 // Reemplaza con tu SSID y contraseña
-const char* ssid = "nombreRed";
-const char* password = "password";
+const char* ssid = "Samm&";
+const char* password = "DinoPulido2023";
 
 const int RX_PIN = 16;  // Pin RX del ESP32
 const int TX_PIN = 17;  // Pin TX del ESP32
 
 // URL del endpoint expuesto por ngrok
-const char* ngrokURL = "https://8d89-191-156-182-203.ngrok-free.app/figures"; // Cambia esto por tu URL ngrok
+const char* ngrokURL = "https://haptica-back.onrender.com/figures"; // Cambia esto por tu URL ngrok
 
 unsigned long previousMillis = 0; // Almacena el último momento en que se realizó una solicitud
 const long interval = 2000;      // Intervalo de 5 segundos
@@ -31,6 +31,7 @@ void setup() {
 }
 
 void loop() {
+  checkWiFiConnection();
   unsigned long currentMillis = millis(); // Obtiene el tiempo actual
 
   // Realiza la solicitud al endpoint cada 5 segundos
@@ -71,4 +72,16 @@ void sendDataToArduino(const String &jsonData) {
   Serial2.println(jsonData);  // Envía el JSON completo tal cual
   Serial.print("Enviado al Arduino - JSON: ");
   Serial.println(jsonData);  
+}
+
+void checkWiFiConnection() {
+  if (WiFi.status() != WL_CONNECTED) {
+    Serial.println("Reconectando a WiFi...");
+    WiFi.begin(ssid, password);
+    while (WiFi.status() != WL_CONNECTED) {
+      delay(1000);
+      Serial.print(".");
+    }
+    Serial.println("\nReconectado a la red Wi-Fi");
+  }
 }
